@@ -1,12 +1,14 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import NavbarComp from './components/NavbarComp';
+import {Outlet} from 'react-router-dom';
+import Navigate from './components/Navigate';
 
 function App() {
 
   return (
     <div className="App">
-      <NavbarComp/>
+      <Navigate/>
+      <Outlet/>
     </div> 
   );
 }

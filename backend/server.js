@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const server = express();
 const cors = require('cors');
 const episodeRoute = require('./routes/EpisodeRoute');
+const platformRoute = require('./routes/PlatformRoute');
 
 server.use(express.json());
 server.use(cors());
@@ -29,3 +30,4 @@ server.listen(port, () => {
 
 //Routes
 server.use('/api/episodes', episodeRoute);
+server.use('/api/platforms', platformRoute);

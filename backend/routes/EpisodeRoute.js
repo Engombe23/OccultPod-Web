@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const {getEpisode, getEpisodeBySlug} = require('../controllers/EpisodeController');
+const {getEpisode, getEpisodeById, updateEpisode} = require('../controllers/EpisodeController');
 
 router.get('/', getEpisode);
-router.get('/:slug', getEpisodeBySlug);
+router.get('/:id', getEpisodeById);
+router.put('/:id', updateEpisode);
 
 module.exports = router;

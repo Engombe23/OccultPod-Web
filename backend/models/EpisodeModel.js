@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const RssParser = require('rss-parser');
 const slugify = require('slugify');
+const cron = require('node-cron');
 
 const episodeSchema = mongoose.Schema(
   {
@@ -66,17 +67,19 @@ const Episode = mongoose.model('Episode', episodeSchema);
 const parser = new RssParser();
 
 const feedURL = "https://feeds.acast.com/public/shows/645ab7b22d07d3001179b88a";
-	
-//Fetch & parse the RSS feed
-parser.parseURL(feedURL)
-  .then(feed=> {
-    feed.items.forEach(episode => {
-      //Check if episode exists in the database
-      Episode.find().then({guid: episode.guid }, (err, existingEpisode) => {
-        if (err){
-          console.error(err);
-          return;
-        }
+
+// Set up a cron job to update the feed every hour
+cron.schedule('0 * * * *', () => {
+  //Fetch & parse the RSS feed
+  parser.parseURL(feedURL)
+    .then(feed=> {
+      feed.items.forEach(episode => {
+        //Check if episode exists in the database
+        Episode.find().then({guid: episode.guid }, (err, existingEpisode) => {
+          if (err){
+            console.error(err);
+            return;
+          }
         
         //If an episode does not exist in the database, add a new episode
         if(!existingEpisode){
@@ -97,5 +100,6 @@ parser.parseURL(feedURL)
       })
     })
   })
+})
 	
 module.exports = Episode;

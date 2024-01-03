@@ -1,13 +1,11 @@
-import React from 'react';
-import Episodes from '../components/Episodes';
+import React from 'react'
 
-
-function Home(){
+function Home() {
   return (
-    <>
-      <Episodes/>
-  </>
+    <div>
+      
+    </div>
   )
 }
 
-export default Home;
+export default Home

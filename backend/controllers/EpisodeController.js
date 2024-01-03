@@ -14,11 +14,28 @@ const getEpisode = asyncHandler(async(req, res) => {
   }
 })
 
-const getEpisodeBySlug = asyncHandler(async(req, res) => {
+const getEpisodeById = asyncHandler(async(req, res) => {
   try {
-    const {slug} = req.params;
-    const episode = await Episode.find(slug);
+    const {id} = req.params;
+    const episode = await Episode.findById(id);
     res.status(200).json(episode);
+  }
+  catch (error){
+    console.log(error);
+    res.status(400).send('Error message');
+  }
+})
+
+const updateEpisode = asyncHandler(async(req, res) => {
+  try {
+    const {id} = req.params;
+    const episode = await Episode.findByIdAndUpdate(id, req.body);
+    if(!episode){
+      return res.status(400).send(`Episode not found with ID ${id}`)
+    }
+    const updatedEpisode = await Episode.findById();
+    res.status(200).json(updatedEpisode);
+    console.log('Episode Updated');
   }
   catch (error){
     console.log(error);
@@ -28,5 +45,6 @@ const getEpisodeBySlug = asyncHandler(async(req, res) => {
 
 module.exports = {
   getEpisode,
-  getEpisodeBySlug
+  getEpisodeById,
+  updateEpisode
 }

@@ -1,11 +1,12 @@
-import React from 'react';
+import React from 'react'
+import Platforms from '../components/Platforms'
 
-function Listen(){
+function Listen() {
   return (
     <div>
-      <h1>Listen</h1>
+      <Platforms/>
     </div>
   )
 }
 
-export default Listen;
+export default Listen

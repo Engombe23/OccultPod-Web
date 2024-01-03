@@ -1,15 +1,20 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import Card from 'react-bootstrap/Card';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-import Button from 'react-bootstrap/Button';
+import {Card, Col, Row, Button} from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 function Episodes(){
   const [episodes, setEpisodes] = useState([]);
+  const [noOfEpisodes, setnoOfEpisodes] = useState(8);
+
+  const loadMore = () => {
+    setnoOfEpisodes(noOfEpisodes + noOfEpisodes);
+  }
 
   console.log(episodes);
+
+  const slice = episodes.slice(0, noOfEpisodes);
 
   const getEpisodes = async() => {
     try {
@@ -28,20 +33,20 @@ function Episodes(){
     <div>
       <div className='container'>
         <Row xs={2} md={4} className='g-4'>
-          {episodes.map((episode, index) => (
-            <Col key={index}>
+          {slice.map((episode, index) => (
+            <Col key={index} className='py-3'>
               <Card style={{width: '18rem'}} className='h-100'>
-                <Card.Img variant='top' src={episode.image}/>
+                <Link to={`/episodes/${episode._id}`}><Card.Img variant='top' src={episode.image}/></Link>
                 <Card.Body>
                   <Card.Text>{"Season: " + episode.episode_season + " Episode: " + episode.episode_number}</Card.Text>
-                  <Card.Title>{episode.title}</Card.Title>
-                  <Button variant='primary' href={'episodes/' + episode.slug}>Listen Now</Button>
+                  <Card.Title>{episode.title}</Card.Title>           
                 </Card.Body>
               </Card>
             </Col>
            ))}
         </Row>
       </div>
+      <Button variant='primary' onClick={() => loadMore()}>Load More</Button>
     </div>
   )
 }
