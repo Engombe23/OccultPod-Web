@@ -5,6 +5,7 @@ const server = express();
 const cors = require('cors');
 const episodeRoute = require('./routes/EpisodeRoute');
 const platformRoute = require('./routes/PlatformRoute');
+const errorMiddleware = require('./middleware/ErrorMiddleware');
 
 server.use(express.json());
 server.use(cors());
@@ -31,3 +32,6 @@ server.listen(port, () => {
 //Routes
 server.use('/api/episodes', episodeRoute);
 server.use('/api/platforms', platformRoute);
+
+//Middleware
+server.use(errorMiddleware);

@@ -9,8 +9,8 @@ const getPlatform = asyncHandler(async(req, res) => {
     res.status(200).json(platforms);
   }
   catch (error){
-    console.log(error);
-    res.status(400).send('Error message');
+    res.status(400);
+    throw new Error(error.message);
   }
 })
 
@@ -21,8 +21,8 @@ const getPlatformById = asyncHandler(async(req, res) => {
     res.status(200).json(platform);
   }
   catch (error){
-    console.log(error);
-    res.status(400).send('Error message');
+    res.status(400);
+    throw new Error(error.message);
   }
 })
 
@@ -32,8 +32,8 @@ const createPlatform = asyncHandler(async(req, res) => {
     res.status(200).json(platform);
   }
   catch (error){
-    console.log(error);
-    res.status(400).send('Error message');
+    res.status(400);
+    throw new Error(error.message);
   }
 })
 
@@ -48,8 +48,8 @@ const updatePlatform = asyncHandler(async(req, res) => {
     res.status(200).json(updatedPlatform);
   }
   catch (error){
-    console.log(error);
-    res.status(400).send('Error message');
+    res.status(400);
+    throw new Error(error.message);
   }
 })
 

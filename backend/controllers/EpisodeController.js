@@ -9,8 +9,8 @@ const getEpisode = asyncHandler(async(req, res) => {
     res.status(200).json(episodes);
   }
   catch (error){
-    console.log(error);
-    res.status(400).send('Error message');
+    res.status(400);
+    throw new Error(error.message);
   }
 })
 
@@ -21,8 +21,8 @@ const getEpisodeById = asyncHandler(async(req, res) => {
     res.status(200).json(episode);
   }
   catch (error){
-    console.log(error);
-    res.status(400).send('Error message');
+    res.status(400);
+    throw new Error(error.message);
   }
 })
 
@@ -38,8 +38,8 @@ const updateEpisode = asyncHandler(async(req, res) => {
     console.log('Episode Updated');
   }
   catch (error){
-    console.log(error);
-    res.status(400).send('Error message');
+    res.status(400);
+    throw new Error(error.message);
   }
 })
 
