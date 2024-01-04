@@ -5,7 +5,7 @@ const asyncHandler = require('express-async-handler');
 
 const getEpisode = asyncHandler(async(req, res) => {
   try {
-    const episodes = await Episode.find(({}));
+    const episodes = await Episode.find(({})).sort({pubDate: -1});
     res.status(200).json(episodes);
   }
   catch (error){
