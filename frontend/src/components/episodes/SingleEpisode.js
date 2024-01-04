@@ -1,6 +1,7 @@
 import React from 'react';
 import { useLoaderData } from 'react-router-dom';
 import moment from 'moment';
+import AudioPlayer from '../audioplayer/AudioPlayer';
 
 function SingleEpisode() {
   const {image, title, link, pubDate, duration, description} = useLoaderData();
@@ -10,7 +11,7 @@ function SingleEpisode() {
       <br></br>
       {title}
       <br></br>
-      <audio src={link}/>
+      <AudioPlayer audioSrc={link}/>
       <br></br>
       {moment(pubDate).format("DD-MM-YYYY")}
       <br></br>
