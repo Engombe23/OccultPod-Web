@@ -51,12 +51,7 @@ function AudioPlayer({audioSrc}) {
 
   // Use an effect to listen for 'timeupdate' events from the audio element
   useEffect(() => {
-    audioRef.current.addEventListener("timeupdate", handleTimeUpdate);
-
-    // Clean up the event listener when the component unmounts.
-    return () => {
-      audioRef.current.removeEventListener("timeupdate", handleTimeUpdate);
-    } 
+    audioRef.current.addEventListener("timeupdate", handleTimeUpdate); 
   }, []);
 
   return (
