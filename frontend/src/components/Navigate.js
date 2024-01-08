@@ -1,6 +1,7 @@
 import React from 'react';
 import {Container, Nav, Navbar} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import {SocialIcon} from 'react-social-icons';
 
 function Navigate() {
   return (
@@ -15,6 +16,8 @@ function Navigate() {
             <Nav.Link as={Link} to={"/episodes"}>Episodes</Nav.Link>
             <Nav.Link as={Link} to={"/listen"}>Where To Listen</Nav.Link>
             <Nav.Link as={Link} to={"/contact"}>Contact</Nav.Link>
+            <SocialIcon url='https://twitter.com/OccultPod_13'/>
+            <SocialIcon url='https://instagram.com/occultpod_13'/>
           </Nav>
         </Navbar.Collapse>
       </Container>
