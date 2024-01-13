@@ -35,7 +35,7 @@ function Episodes(){
         <Row xs={2} md={4} className='g-4'>
           {slice.map((episode, index) => (
             <Col key={index} className='py-3'>
-              <Card style={{width: '18rem'}} className='h-100'>
+              <Card style={{width: '18rem'}} className='h-100' bg='myColour'>
                 <Link to={`/episodes/${episode._id}`}><Card.Img variant='top' src={episode.image}/></Link>
                 <Card.Body>
                   <Card.Text>{"Season: " + episode.episode_season + " Episode: " + episode.episode_number}</Card.Text>
