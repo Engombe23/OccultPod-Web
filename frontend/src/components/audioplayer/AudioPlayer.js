@@ -54,6 +54,7 @@ function AudioPlayer({audioSrc}) {
     audioRef.current.addEventListener("timeupdate", handleTimeUpdate); 
   }, []);
 
+
   return (
     <div>
       {/* Input range for seeking within the audio track */}

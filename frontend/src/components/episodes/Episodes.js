@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import {Card, Col, Row, Button} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import AudioPlayer from '../audioplayer/AudioPlayer';
 
 function Episodes(){
   const [episodes, setEpisodes] = useState([]);
@@ -44,6 +45,7 @@ function Episodes(){
                   <Card.Text>{"Season: " + episode.episode_season + " Episode: " + episode.episode_number}</Card.Text>
                   <Card.Title>{episode.title}</Card.Title>
                   <Card.Text>{episode.description}</Card.Text>
+                  <AudioPlayer audioSrc={episode.link}/>
                 </Card.Body>
               </Col>
             </>
