@@ -28,24 +28,27 @@ function Episodes(){
   useEffect(() => {
     getEpisodes();
   }, []);
- 
+
   return (
     <div>
-      <div className='container'>
         <Row xs={2} md={4} className='g-4'>
-          {slice.map((episode, index) => (
-            <Col key={index} className='py-3'>
-              <Card style={{width: '18rem'}} className='h-100' bg='myColour'>
-                <Link to={`/episodes/${episode._id}`}><Card.Img variant='top' src={episode.image}/></Link>
+          {slice.map((episode, index, newIndex) => (
+            <>
+              <Col key={index} md={4}>
+                <Card style={{width: '18rem'}} className='h-100' bg='myColour'>
+                  <Link to={`/episodes/${episode._id}`}><Card.Img src={episode.image} /></Link>
+                </Card>
+              </Col>
+              <Col key={newIndex} md={8}>
                 <Card.Body>
                   <Card.Text>{"Season: " + episode.episode_season + " Episode: " + episode.episode_number}</Card.Text>
-                  <Card.Title>{episode.title}</Card.Title>           
+                  <Card.Title>{episode.title}</Card.Title>
+                  <Card.Text>{episode.description}</Card.Text>
                 </Card.Body>
-              </Card>
-            </Col>
-           ))}
+              </Col>
+            </>
+          ))}
         </Row>
-      </div>
       <Button variant='primary' onClick={() => loadMore()}>Load More</Button>
     </div>
   )
