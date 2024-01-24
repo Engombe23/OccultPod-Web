@@ -54,7 +54,6 @@ function AudioPlayer({audioSrc}) {
     audioRef.current.addEventListener("timeupdate", handleTimeUpdate); 
   }, []);
 
-
   return (
     <div>
       {/* Input range for seeking within the audio track */}
@@ -63,7 +62,7 @@ function AudioPlayer({audioSrc}) {
       {/* The <audio> element for playing the audio. */}
       <audio ref={audioRef} src={audioSrc}/>
 
-      {/* Display current & tital duration of the track. */}
+      {/* Display current & total duration of the track. */}
       <div className='track-duration'>
         <p>{formatDuration(currentTime)}</p>
         <p>{formatDuration(duration)}</p>

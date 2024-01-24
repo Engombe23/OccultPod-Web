@@ -1,6 +1,7 @@
 import React from 'react';
 import Episodes from '../components/episodes/Episodes';
 import './Home.css';
+import './Pages.css';
 
 function Home() {
   return (

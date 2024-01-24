@@ -4,6 +4,7 @@ import axios from 'axios';
 import {Card, Col, Row, Button} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import AudioPlayer from '../audioplayer/AudioPlayer';
+import './Episodes.css';
 
 function Episodes(){
   const [episodes, setEpisodes] = useState([]);
@@ -32,11 +33,12 @@ function Episodes(){
 
   return (
     <div>
-        <Row xs={2} md={4} className='g-4'>
+      <section>
+      <Row xs={2} md={4} className='g-4'>
           {slice.map((episode, index, newIndex) => (
             <>
               <Col key={index} md={4}>
-                <Card style={{width: '18rem'}} className='h-100' bg='myColour'>
+                <Card style={{width: '18rem'}}>
                   <Link to={`/episodes/${episode._id}`}><Card.Img src={episode.image} /></Link>
                 </Card>
               </Col>
@@ -51,6 +53,7 @@ function Episodes(){
             </>
           ))}
         </Row>
+      </section>
       <Button variant='primary' onClick={() => loadMore()}>Load More</Button>
     </div>
   )
