@@ -1,8 +1,8 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import {Card, Col, Row, Button} from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import {Button} from 'react-bootstrap';
+import 'bootstrap';
 import AudioPlayer from '../audioplayer/AudioPlayer';
 import './Episodes.css';
 
@@ -34,25 +34,21 @@ function Episodes(){
   return (
     <div>
       <section>
-      <Row xs={2} md={4} className='g-4'>
-          {slice.map((episode, index, newIndex) => (
-            <>
-              <Col key={index} md={4}>
-                <Card style={{width: '18rem'}}>
-                  <Link to={`/episodes/${episode._id}`}><Card.Img src={episode.image} /></Link>
-                </Card>
-              </Col>
-              <Col key={newIndex} md={8}>
-                <Card.Body>
-                  <Card.Text>{"Season: " + episode.episode_season + " Episode: " + episode.episode_number}</Card.Text>
-                  <Card.Title>{episode.title}</Card.Title>
-                  <Card.Text>{episode.description}</Card.Text>
-                  <AudioPlayer audioSrc={episode.link}/>
-                </Card.Body>
-              </Col>
-            </>
-          ))}
-        </Row>
+        <div className='container'>
+          <div className='row g-0'>
+            <div className='col'>
+            {slice.map((episode) => (
+                <div className="card text-center w-75 mb-3">
+                  <div className="card-body">
+                    <h5 className="card-title">{episode.title}</h5>
+                    <p className="card-text">{episode.description}</p>
+                    <AudioPlayer audioSrc={episode.link}/>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
       </section>
       <Button variant='primary' onClick={() => loadMore()}>Load More</Button>
     </div>
