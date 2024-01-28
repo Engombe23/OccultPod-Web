@@ -1,10 +1,11 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import {Button} from 'react-bootstrap';
+import {Row, Col, Button, Card} from 'react-bootstrap';
 import 'bootstrap';
 import AudioPlayer from '../audioplayer/AudioPlayer';
 import './Episodes.css';
+import moment from 'moment';
 
 function Episodes(){
   const [episodes, setEpisodes] = useState([]);
@@ -35,22 +36,25 @@ function Episodes(){
     <div>
       <section>
         <div className='container'>
-          <div className='row g-0'>
-            <div className='col'>
-            {slice.map((episode) => (
-                <div className="card text-center w-75 mb-3">
-                  <div className="card-body">
-                    <h5 className="card-title">{episode.title}</h5>
-                    <p className="card-text">{episode.description}</p>
+          <Row className='row g-0'>
+            <Col>
+              {slice.map((episode) => (
+                <Card className='card mx-auto text-center w-75 mb-3'>
+                  <Card.Body>
+                    <Card.Text>{moment(episode.pubDate).format("DD MMM YYYY")}</Card.Text>
+                    <Card.Title>{episode.title}</Card.Title>
+                    <Card.Text>{episode.description}</Card.Text>
                     <AudioPlayer audioSrc={episode.link}/>
-                  </div>
-                </div>
+                  </Card.Body>
+                </Card>
               ))}
-            </div>
-          </div>
+            </Col>
+          </Row>
         </div>
       </section>
-      <Button variant='primary' onClick={() => loadMore()}>Load More</Button>
+      <div className='text-center'>
+        <Button variant='primary' onClick={() => loadMore()} style={{width: '100px'}}>Load More</Button>
+      </div>
     </div>
   )
 }
