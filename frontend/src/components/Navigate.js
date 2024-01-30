@@ -27,6 +27,9 @@ function Navigate() {
               <Nav.Item>
                 <Nav.Link as={Link} to={"/listen"}>Where to Listen</Nav.Link>
               </Nav.Item>
+              <Nav.Item>
+                <Nav.Link as={Link} to={"/dashboard"}>Dashboard</Nav.Link>
+              </Nav.Item>
             </Nav>
           </Navbar.Collapse>
         </Container>

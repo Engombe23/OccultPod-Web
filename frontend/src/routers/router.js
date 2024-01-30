@@ -6,6 +6,7 @@ import Episodes from '../components/episodes/Episodes';
 import Contact from '../pages/Contact';
 import SingleEpisode from '../components/episodes/SingleEpisode';
 import Listen from '../pages/Listen';
+import Dashboard from '../pages/Dashboard';
 
 const router = createBrowserRouter([
   {
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
       {
         path: '/listen',
         element: <Listen/>
+      },
+      {
+        path: '/dashboard',
+        element: <Dashboard/>
       }
     ]
   }

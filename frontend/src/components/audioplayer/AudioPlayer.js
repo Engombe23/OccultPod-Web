@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import './AudioPlayer.css';
+import { BsPlayFill , BsFillPauseFill  } from "react-icons/bs";
 
 function AudioPlayer({audioSrc}) {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -70,7 +71,7 @@ function AudioPlayer({audioSrc}) {
 
       {/* Play/Pause button */}
       <button onClick={handlePlayPause}>
-        {isPlaying ? "Pause": "Play"}
+        {isPlaying ? <BsFillPauseFill/>: <BsPlayFill/>}
       </button>
     </div>
   )
