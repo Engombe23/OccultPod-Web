@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import {Card, Button, Table} from 'react-bootstrap';
 import moment from 'moment';
+import {Link} from 'react-router-dom';
 
 function Dashboard() {
   const [episodes, setEpisodes] = useState([]);
@@ -35,7 +36,7 @@ function Dashboard() {
                   <Card>
                     <Card.Header>Episodes
                       <div className='position-absolute top-0 end-0 px-2'>
-                        <Button style={{width: '150px', height: '30px'}}>New Episode</Button>
+                        <Link to={"/dashboard/new"}><Button style={{width: '150px', height: '30px'}}>New Episode</Button></Link>
                       </div>
                     </Card.Header>
                     {
@@ -45,6 +46,7 @@ function Dashboard() {
                             <th>Cover</th>
                             <th>Title</th>
                             <th>Date</th>
+                            <th>Actions</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -52,8 +54,12 @@ function Dashboard() {
                             <tr>
                              <>
                               <td key={index}><Card.Img src={episode.image} style={{width: '5rem'}}/></td>
-                              <td>{episode.title}</td>
+                              <td>{episode.title}<br/>
+                                <small className='text-muted'>{"Season " + episode.episode_season + " Episode " + episode.episode_number}</small>
+                              </td>
                               <td>{moment(episode.pubDate).format("DD MMM YYYY")}</td>
+                              <td><Link to={`/dashboard/edit/${episode._id}`}><Button style={{width: '75px'}}>Edit</Button></Link></td>
+                              <td><Button style={{width: '100px'}}>Delete</Button></td>
                              </>
                             </tr>
                           ))}
