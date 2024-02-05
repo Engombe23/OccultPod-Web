@@ -50,8 +50,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/dashboard/edit/:id',
-        element: <UpdateEpisode/>,
-        loader: ({params}) => fetch(`http://localhost:5000/api/episodes/${params.id}`)
+        element: <UpdateEpisode/>
       }
     ]
   }

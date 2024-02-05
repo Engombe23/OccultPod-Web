@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Episodes.css';
 import Episode from './Episode';
+import BouncingDotsLoader from '../loader/BouncingDotsLoader';
 
 function Episodes(){
   const [episodes, setEpisodes] = useState([]);
@@ -30,7 +31,7 @@ function Episodes(){
       <section>
         <div className='container'>
           {isLoading ? (
-            "Loading"
+            <BouncingDotsLoader/>
           ) : (
             <>
               {episodes.length > 0 ?(

@@ -3,10 +3,19 @@ import axios from 'axios';
 import {Card, Button, Table} from 'react-bootstrap';
 import moment from 'moment';
 import {Link} from 'react-router-dom';
+import Pagination from '../pagination/Pagination';
+import BouncingDotsLoader from '../components/loader/BouncingDotsLoader';
 
 function Dashboard() {
   const [episodes, setEpisodes] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [episodesPerPage, setEpisodesPerPage] = useState(10);
+
+  const lastEpisodeIndex = currentPage * episodesPerPage;
+  const firstEpisodeIndex = lastEpisodeIndex - episodesPerPage;
+  const currentEpisodes = episodes.slice(firstEpisodeIndex, lastEpisodeIndex);
 
   const getEpisodes = async() => {
     try {
@@ -28,7 +37,7 @@ function Dashboard() {
       <section>
         <div className='container'>
           {isLoading ? (
-            "Loading"
+            <BouncingDotsLoader/>
           ) : (
             <>
               {episodes.length > 0 ?(
@@ -50,7 +59,7 @@ function Dashboard() {
                           </tr>
                         </thead>
                         <tbody>
-                          {episodes.map((episode, index) => (
+                          {currentEpisodes.map((episode, index) => (
                             <tr>
                              <>
                               <td key={index}><Card.Img src={episode.image} style={{width: '5rem'}}/></td>
@@ -66,6 +75,8 @@ function Dashboard() {
                           </tbody>
                         </Table>
                       }
+                      <Card.Text className='small'>{episodes.length + " total episodes."}</Card.Text>
+                      <Pagination totalEpisodes={episodes.length} episodesPerPage={episodesPerPage} setCurrentPage={setCurrentPage} currentPage={currentPage}/>
                   </Card>
                 </>
               ): (
