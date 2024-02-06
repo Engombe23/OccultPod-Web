@@ -45,7 +45,7 @@ function UpdateEpisode() {
     try {
       await axios.put(`http://localhost:5000/api/episodes/${id}`, episode);
       console.log('Updated an episode');
-      navigate('/');
+      navigate('/dashboard');
     }
     catch(error){
       setIsLoading(false);
@@ -79,7 +79,7 @@ function UpdateEpisode() {
                 </Row>
                 <Form.Group className='mb-3'>
                   <Form.Label>Description</Form.Label>
-                  <Form.Control style={{height: '200px'}} type='text' value={episode.description} onChange={(e) => setEpisode({...episode, description: e.target.value})} placeholder='Episode Description'/>
+                  <Form.Control as="textarea" style={{height: '200px'}} type='text' value={episode.description} onChange={(e) => setEpisode({...episode, description: e.target.value})} placeholder='Episode Description'/>
                 </Form.Group>
                 <div>
                   {

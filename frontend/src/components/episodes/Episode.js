@@ -1,10 +1,13 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Row, Col, Card} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import AudioPlayer from '../audioplayer/AudioPlayer';
 import moment from 'moment';
 
 function Episode({episode}) {
+  const [expandedDescription, setExpandedDescription] = useState(true);
+  const maxChars = 200;
+
   return (
     <div>
       <section>
@@ -16,7 +19,7 @@ function Episode({episode}) {
                 <Card.Body>
                   <Card.Text>{moment(episode.pubDate).format("DD MMM YYYY")}</Card.Text>
                   <Card.Title>{episode.title}</Card.Title>
-                  <Card.Text>{episode.description}</Card.Text>
+                  <Card.Text>{expand()}</Card.Text>
                   <AudioPlayer audioSrc={episode.link}/>
                 </Card.Body>
               </Card>
@@ -26,6 +29,20 @@ function Episode({episode}) {
       </section>
     </div>
   )
+
+  function expand(){
+    if (episode.description.length <= maxChars) return <p>{episode.description}</p>
+
+    const text = expandedDescription ? episode.description.substring(0, maxChars) : episode.description
+
+    return (
+      <>
+        <p>{text}...</p>
+        <button onClick={() => setExpandedDescription(!expandedDescription)}>{expandedDescription? "Read More": "Read Less"}</button>
+      </>
+    )
+  }
+
 }
 
 export default Episode
