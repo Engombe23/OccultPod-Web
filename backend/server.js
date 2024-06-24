@@ -6,6 +6,7 @@ const cors = require('cors');
 const episodeRoute = require('./routes/EpisodeRoute');
 const platformRoute = require('./routes/PlatformRoute');
 const errorMiddleware = require('./middleware/ErrorMiddleware');
+const path = require('path');
 
 server.use(express.json());
 server.use(cors());
@@ -35,3 +36,18 @@ server.use('/api/platforms', platformRoute);
 
 //Middleware
 server.use(errorMiddleware);
+
+// Deployment
+const buildPath = path.join(__dirname, "../frontend/build");
+
+if(process.env.NODE_ENV === 'production'){
+  server.use(express.static(buildPath));
+
+  server.get('*/', (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend/build/index.html'))
+  })
+} else {
+  server.get('/', (req, res) => {
+    res.send("API is running...");
+  })
+}
