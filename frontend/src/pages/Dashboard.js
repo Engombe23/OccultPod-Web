@@ -5,6 +5,7 @@ import moment from 'moment';
 import {Link} from 'react-router-dom';
 import Pagination from '../pagination/Pagination';
 import BouncingDotsLoader from '../components/loader/BouncingDotsLoader';
+import Swal from "sweetalert2";
 
 function Dashboard() {
   const [episodes, setEpisodes] = useState([]);
@@ -31,6 +32,27 @@ function Dashboard() {
   useEffect(() => {
     getEpisodes();
   }, []);
+
+  const deleteEpisode = async (id) => {
+    const result = await Swal.fire({
+      title: 'Do you really want to delete the episode?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+
+  })
+  if(result.isConfirmed){
+      try{
+          await axios.delete(`http:localhost:5000/api/episodes/${id}`);
+          console.log("Deleted an episode successfully");
+          getEpisodes();
+      }catch(error){
+          console.error(error.message);
+      }
+  }
+  }
 
   return (
     <div>
@@ -68,7 +90,7 @@ function Dashboard() {
                               </td>
                               <td>{moment(episode.pubDate).format("DD MMM YYYY")}</td>
                               <td><Link to={`/dashboard/edit/${episode._id}`}><Button style={{width: '75px'}}>Edit</Button></Link></td>
-                              <td><Button style={{width: '100px'}}>Delete</Button></td>
+                              <td><Button onClick={() => deleteEpisode(episode._id)} style={{width: '100px'}}>Delete</Button></td>
                              </>
                             </tr>
                           ))}

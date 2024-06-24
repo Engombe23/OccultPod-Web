@@ -1,11 +1,34 @@
 import {React, useState} from 'react';
 import {Form, Button} from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
 function NewEpisode() {
 
   const [title, setTitle] = useState("");
   const [audio, setAudio] = useState("");
   const [image, setImage] = useState("");
+  const [description, setDescription] = useState("");
+  const [episodeSeason, setEpisodeSeason] = useState("");
+  const [episodeNumber, setEpisodeNumber] = useState("");
+
+  const [isLoading, setIsLoading] = useState(false);
+
+  const navigate = useNavigate();
+
+  const saveEpisode = (e) => {
+    e.preventDefault();
+    if(title == "" || audio == "" || image == "" || description == "" || episodeSeason == "" || episodeNumber == "") {
+      alert("Please fill episode info");
+      return;
+    }
+    try {
+      setIsLoading(true);
+      
+    }
+    catch(error){
+      console.error(error);
+    }
+  }
 
   return (
     <div>
@@ -20,11 +43,11 @@ function NewEpisode() {
             <Form.Label>Image</Form.Label>
             <Form.Control type='text' value={image} onChange={(e) => setImage(e.target.value)} placeholder='Episode Image URL'/>
             <Form.Label>Description</Form.Label>
-            <Form.Control type='text' placeholder='Episode description'/>
+            <Form.Control type='text' value={description} onChange={(e) => setDescription(e.target.value)} placeholder='Episode description'/>
             <Form.Label>Season</Form.Label>
-            <Form.Control type='text' placeholder='Episode season'/>
+            <Form.Control type='text' value={episodeSeason} onChange={(e) => setEpisodeSeason(e.target.value)} placeholder='Episode season'/>
             <Form.Label>Episode Number</Form.Label>
-            <Form.Control type='text' placeholder='Episode number'/>
+            <Form.Control type='text' value={episodeNumber} onChange={(e) => setEpisodeNumber(e.target.value)} placeholder='Episode number'/>
           </Form.Group>
         </Form>
         <div className='text-center'>

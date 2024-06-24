@@ -16,16 +16,7 @@ function Navigate() {
                 <Nav.Link as={Link} to={"/"}>Home</Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link as={Link} to={"/about"}>About</Nav.Link>
-              </Nav.Item>
-              <Nav.Item>
                 <Nav.Link as={Link} to={"/episodes"}>Episodes</Nav.Link>
-              </Nav.Item>
-              <Nav.Item>
-                <Nav.Link as={Link} to={"/contact"}>Contact</Nav.Link>
-              </Nav.Item>
-              <Nav.Item>
-                <Nav.Link as={Link} to={"/listen"}>Where to Listen</Nav.Link>
               </Nav.Item>
               <Nav.Item>
                 <Nav.Link as={Link} to={"/dashboard"}>Dashboard</Nav.Link>
