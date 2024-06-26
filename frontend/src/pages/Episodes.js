@@ -21,7 +21,7 @@ function Episodes(){
   const getEpisodes = async() => {
     try {
       setIsLoading(true);
-      const res = await axios.get('http://localhost:5000/api/episodes');
+      const res = await axios.get('/api/episodes');
       setEpisodes(res.data);
       setIsLoading(false);
     } catch (error){

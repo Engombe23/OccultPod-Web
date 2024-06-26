@@ -17,7 +17,7 @@ function Home() {
   const getTrailer = async() => {
     try {
       setIsLoading(true);
-      const res = await axios.get('http://localhost:5000/api/episodes/658f2b7a5812c6a749c00186');
+      const res = await axios.get('/api/episodes/658f2b7a5812c6a749c00186');
       setTrailer(res.data);
       setIsLoading(false);
     }
@@ -29,7 +29,7 @@ function Home() {
   const getPlatforms = async() => {
     try {
       setIsLoading(true);
-      const res = await axios.get('http://localhost:5000/api/platforms');
+      const res = await axios.get('/api/platforms');
       setPlatforms(res.data);
       setIsLoading(false);
     } catch (error){

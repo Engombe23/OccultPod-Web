@@ -18,7 +18,7 @@ function UpdateEpisode() {
   const getEpisode = async () => {
     setIsLoading(true);
     try{
-        const response = await axios.get(`http://localhost:5000/api/episodes/${id}`);
+        const response = await axios.get(`/api/episodes/${id}`);
         setEpisode({
             title: response.data.title,
             link: response.data.link,
@@ -43,7 +43,7 @@ function UpdateEpisode() {
     e.preventDefault();
     setIsLoading(true);
     try {
-      await axios.put(`http://localhost:5000/api/episodes/${id}`, episode);
+      await axios.put(`/api/episodes/${id}`, episode);
       console.log('Updated an episode');
       navigate('/dashboard');
     }

@@ -21,7 +21,7 @@ function Dashboard() {
   const getEpisodes = async() => {
     try {
       setIsLoading(true);
-      const res = await axios.get('http://localhost:5000/api/episodes');
+      const res = await axios.get('/api/episodes');
       setEpisodes(res.data);
       setIsLoading(false);
     } catch (error){
@@ -45,7 +45,7 @@ function Dashboard() {
   })
   if(result.isConfirmed){
       try{
-          await axios.delete(`http:localhost:5000/api/episodes/${id}`);
+          await axios.delete(`/api/episodes/${id}`);
           console.log("Deleted an episode successfully");
           getEpisodes();
       }catch(error){
