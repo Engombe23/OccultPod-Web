@@ -24,7 +24,7 @@ async function connect() {
 }
 
 // Basic Express server connection
-const port = process.env.PORT;
+const port = process.env.PORT || 5000;
 server.listen(port, () => {
   connect();
   console.log(`Server started on port ${port}`);
