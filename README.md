@@ -1,13 +1,16 @@
 ﻿# OccultPod-Web
 
 <h2>Description</h2>
+
+<p>I co-hosted a podcast for 2 years with a good friend so thought about using my web development skills to develop our own podcast website built with the MERN Stack. </p>
+
+<p>I used and applied the <a href="https://www.npmjs.com/package/rss-parser">rss-parser</a> npm package to extract the RSS feed of my podcast.</p>
+
 <p>This project was inspired by The Real Python Tutorial on creating a <a href="https://realpython.com/build-a-content-aggregator-python/">podcast aggregator</a>.</p>
 
-<p>The project was originally written in Django, but I switched to JavaScript.</p>
-
-<p>It was particlarly interesting to use the <a href="https://www.npmjs.com/package/rss-parser">rss-parser</a> npm package to extract the RSS feed of a podcast.</p>
-
 <p>The RSS feed of the podcast I extracted👉<a href="https://feeds.acast.com/public/shows/645ab7b22d07d3001179b88a">Link to the feed</a></p>
+
+<p>Check out the website below👇 and any episodes if interested🎙</p>
 
 <h2>Website</h2>
 
